@@ -1,4 +1,4 @@
-import { configureStore } from "@testing-library/react";
+import { configureStore } from "@reduxjs/toolkit";
 import appSlice from "./appSlice"
 
 
