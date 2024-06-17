@@ -1,12 +1,12 @@
 
-const GOOGLE_API_KEY = ""
+const GOOGLE_API_KEY = "AIzaSyCEcXCbDie-HyNDvdTRhIr5zOXBY0BFlgA"
 
 
-const API_CALL = ""
+export const API_CALL = "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode=US&key="+GOOGLE_API_KEY;
 
 
 
-export default API_CALL;
+
 
 
 
