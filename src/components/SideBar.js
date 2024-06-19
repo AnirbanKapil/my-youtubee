@@ -8,7 +8,7 @@ function SideBar () {
     
     if(!isMenuOpen) return null;
     return (
-        <div className="col-span-1 p-1 shadow-lg text-center">
+        <div className="col-span-1 p-1 shadow-lg text-center w-36 mt-4 mr-4">
             <ul className="font-bold">
                 <li>Home</li>
                 <li>Shorts</li>
