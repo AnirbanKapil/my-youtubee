@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 function SideBar () {
@@ -10,10 +11,10 @@ function SideBar () {
     return (
         <div className="col-span-1 p-1 shadow-lg text-center w-36 mt-4 mr-4">
             <ul className="font-bold">
-                <li>Home</li>
-                <li>Shorts</li>
-                <li>Live</li>
-                <li>Videos</li>
+                <li className="my-2"><Link to={"/"}>Home</Link></li>
+                <li className="my-2">Shorts</li>
+                <li className="my-2">Live</li>
+                <li className="my-2">Videos</li>
 
             </ul>
             

@@ -1,6 +1,7 @@
 import React from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 function Header () {
@@ -14,7 +15,7 @@ function Header () {
             <div className="flex col-span-1">
             <img onClick={()=>{toggleMenuHandler()}}
             className="w-9 ml-2 cursor-pointer" alt="menu" src="https://www.svgrepo.com/show/312300/hamburger-menu.svg" />
-            <img alt="logo" className="w-28 h-20" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQXVI2ps2AssNUmZBvJ1aqgdVJhhCXBUcb8SRRkF6I5g&s" />
+            <img alt="logo" className="m-1 w-28 h-20 cursor-pointer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQXVI2ps2AssNUmZBvJ1aqgdVJhhCXBUcb8SRRkF6I5g&s" />  
             </div>
             <div className="text-center mt-4 col-span-10">
              <input type="text" className="border border-solid w-1/2 h-6 mt-2 rounded-full"></input>
