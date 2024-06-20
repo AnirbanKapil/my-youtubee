@@ -3,10 +3,10 @@ import React from 'react'
 
 function VideoCard({info}) {
 
-    console.log(info)
+    
     
     const{snippet,statistics} = info
-    console.log(snippet , statistics) 
+    
     
     
     const {channelTitle,title,thumbnails} = snippet

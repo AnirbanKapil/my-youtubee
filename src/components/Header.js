@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { YOUTUBE_SEARCH_API } from "../utils/constants";
 
 
 function Header () {
+    
+    const [searchQuery,setSearchQuery] = useState("")
+
+    useEffect(()=>{
+       getSearchSugst()
+    },[searchQuery])
+    
+    const getSearchSugst = async () => {
+        const data = await fetch(YOUTUBE_SEARCH_API+searchQuery);
+        const search = await data.json()
+        console.log(search[1])
+    }
+    
+    
+    
+    
+    
     const dispatch = useDispatch();
     const toggleMenuHandler = () => {
         dispatch(toggleMenu());
@@ -18,7 +36,11 @@ function Header () {
             <img alt="logo" className="m-1 w-28 h-20 cursor-pointer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQXVI2ps2AssNUmZBvJ1aqgdVJhhCXBUcb8SRRkF6I5g&s" />  
             </div>
             <div className="text-center mt-4 col-span-10">
-             <input type="text" className="border border-solid w-1/2 h-6 mt-2 rounded-full"></input>
+             <input type="text" 
+             className="border border-solid w-1/2 h-6 mt-2 rounded-full"
+             value={searchQuery}
+             onChange={(e)=> setSearchQuery(e.target.value)}
+             ></input>
              <button className=" ml-2 rounded-full shadow-md p-1 w-8"><img alt="search icon" src="https://e7.pngegg.com/pngimages/342/516/png-clipart-computer-icons-search-icon-zooming-user-interface-computer-icons-thumbnail.png"/></button>   
             </div>
             <div>
