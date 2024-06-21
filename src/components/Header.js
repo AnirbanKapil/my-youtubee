@@ -12,6 +12,7 @@ function Header () {
     const[showSuggestion,setShowSuggestion] = useState(false)
 
     const dispatch = useDispatch();
+    
     const searchCache = useSelector((store)=> store.search)
 
     
@@ -32,9 +33,10 @@ function Header () {
 
 
     const getSearchSugst = async () => {
+        
         const data = await fetch(YOUTUBE_SEARCH_API+searchQuery);
         const search = await data.json()
-        
+        console.log(searchQuery)
         setSuggestion(search[1])
 
         dispatch(cacheResults({
@@ -70,8 +72,9 @@ function Header () {
             {showSuggestion && <div className="ml-12 absolute bg-slate-100 py-2 px-5 w-[26rem] shadow-lg rounded-lg border border-gray-100">
                 <ul>
                     {suggestion.map((sugg)=> 
-                     <li key={sugg}
-                      className="py-2 shadow-sm cursor-context-menu hover:bg-gray-200">👀  {sugg}</li>
+                     <li  
+                     key={sugg}
+                     className="py-2 shadow-sm cursor-context-menu hover:bg-gray-200">👀  {sugg}</li>
                     )}
                    </ul>
             </div>}
