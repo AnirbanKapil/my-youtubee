@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { toggleMenu } from "../utils/appSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
-
+import { cacheResults } from "../utils/searchSlice";
 
 function Header () {
     
     const [searchQuery,setSearchQuery] = useState("")
     const [suggestion,setSuggestion] = useState([]);
     const[showSuggestion,setShowSuggestion] = useState(false)
+
+    const dispatch = useDispatch();
+    const searchCache = useSelector((store)=> store.search)
+
     
     useEffect(()=>{
-       const timer = setTimeout(()=>getSearchSugst(),200);
-       return (()=>{
+       const timer = setTimeout(()=>{
+        if(searchCache[searchQuery]){
+            setSuggestion(searchCache[searchQuery])
+        }else{
+            getSearchSugst()
+        }
+        },200);
+       
+    return (()=>{
             clearTimeout(timer)
        })
        },[searchQuery])
@@ -25,20 +36,22 @@ function Header () {
         const search = await data.json()
         
         setSuggestion(search[1])
+
+        dispatch(cacheResults({
+            [searchQuery] : search[1]
+        }))
     }
     
     
     
-    
-    
-    const dispatch = useDispatch();
     const toggleMenuHandler = () => {
         dispatch(toggleMenu());
     }
         
     return (
-        <div className="grid grid-flow-col shadow-lg ">
-            <div className="flex col-span-1">
+        <div className="">
+        <div className="grid grid-flow-col shadow-lg  ">
+            <div className="flex col-span-1 ">
             <img onClick={()=>{toggleMenuHandler()}}
             className="w-9 ml-2 cursor-pointer" alt="menu" src="https://www.svgrepo.com/show/312300/hamburger-menu.svg" />
             <img alt="logo" className="m-1 w-28 h-20 cursor-pointer" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQXVI2ps2AssNUmZBvJ1aqgdVJhhCXBUcb8SRRkF6I5g&s" />  
@@ -68,8 +81,9 @@ function Header () {
 
             </div>
         </div>
+    </div>  
     )
-}
+ }
 
 
 export default Header;
