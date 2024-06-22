@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { closeMenu } from '../utils/appSlice'
 import { useSearchParams } from 'react-router-dom'
-import Comments from './Comments'
+import CommentComponent from './CommentComponent'
 
 function WatchPage() {
   
   const [searchParams] = useSearchParams()
-  console.log(searchParams.get("v"))   
+   
   const dispatch = useDispatch()  
      
   useEffect(()=>{
@@ -22,7 +22,7 @@ function WatchPage() {
          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
          referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
     </div>
-       <Comments />
+       <CommentComponent />
     </div>
   )
 }
